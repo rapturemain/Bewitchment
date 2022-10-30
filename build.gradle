@@ -1,15 +1,16 @@
 buildscript {
     repositories {
-        jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven {
-            url "https://www.cursemaven.com"
-        }
+        maven { url "https://www.cursemaven.com" }
+        maven { url "https://minecraft.curseforge.com/api/maven" }
+        maven { url = "https://files.minecraftforge.net/maven" }
         maven {
             name = 'sponge'
-            url = 'https://repo.spongepowered.org/maven'
+            url = 'https://repo.spongepowered.org/repository/legacy-transfer/'
         }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://maven.blamejared.com/"}
+        mavenCentral()
+        google()
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
@@ -63,9 +64,7 @@ repositories {
     maven {
         url = "http://dvs1.progwml6.com/files/maven"
     }
-    maven {
-        url "https://www.cursemaven.com"
-    }
+    maven { url "https://www.cursemaven.com" }
 }
 
 configurations {
@@ -95,8 +94,8 @@ dependencies {
     deobfProvided "curse.maven:serene-seasons-291874:2799213"
     deobfProvided "curse.maven:tough-as-nails-246391:2710969"
     deobfProvided "curse.maven:llibrary-243298:2504999"
-    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    deobfCompile "vazkii.patchouli:Patchouli:1.0-21.3"
+    compile "com.azanor.baubles:Baubles:1.12-1.5.2:deobf"
+    compile "vazkii.patchouli:Patchouli:1.0-21.3:deobf"
     implementation 'org.jetbrains:annotations:20.1.0'
     shade('org.spongepowered:mixin:0.8') {
         transitive = false

@@ -1,6 +1,7 @@
 package com.bewitchment.common.entity.spirit.demon;
 
 import com.bewitchment.Bewitchment;
+import com.bewitchment.ModConfig;
 import com.bewitchment.api.BewitchmentAPI;
 import com.bewitchment.common.entity.living.EntityWerewolf;
 import com.bewitchment.common.entity.spirit.ghost.EntityBlackDog;
@@ -30,6 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
@@ -42,6 +44,8 @@ import javax.annotation.Nullable;
 public class EntityCambion extends ModEntityMob {
 	private static final DataParameter<Integer> CAMBION_TYPE = EntityDataManager.createKey(EntityCambion.class, DataSerializers.VARINT);
 	public int attackTimer = 0;
+
+	private final boolean shouldDespawnInNether = ModConfig.misc.cambionDespawnInNetherEnabled;
 
 	public EntityCambion(World world) {
 		super(world, new ResourceLocation(Bewitchment.MODID, "entities/cambion"));
@@ -92,7 +96,8 @@ public class EntityCambion extends ModEntityMob {
 
 	@Override
 	protected boolean canDespawn() {
-		return false;
+		return shouldDespawnInNether &&
+			this.world.provider.getDimension() == DimensionType.NETHER.getId();
 	}
 
 	@Override

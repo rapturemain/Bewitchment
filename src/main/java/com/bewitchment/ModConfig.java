@@ -50,6 +50,9 @@ public class ModConfig {
 		@Config.Comment("The maximum damage a Skeleton Key can take.")
 		@Config.RangeInt(min = 0, max = 128)
 		public int maxSkeletonKeyUses = 10;
+
+		@Config.Comment("Should cambion despawn in the nether if no player is nearby")
+		public boolean cambionDespawnInNetherEnabled = false;
 	}
 
 	public static class WorldGen {
